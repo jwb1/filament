@@ -36,6 +36,9 @@ set(LOPTS "${LOPTS} -s USE_WEBGL2=1")
 set(LOPTS "${LOPTS} -s FULL_ES3")
 set(LOPTS "${LOPTS} -s MIN_WEBGL_VERSION=2")
 set(LOPTS "${LOPTS} -s MAX_WEBGL_VERSION=2")
+# This became manditory in emcc 3.1.31. Not sure if it breaks older versions.
+# https://github.com/emscripten-core/emscripten/blob/main/ChangeLog.md#3131---012623
+set(LOPTS "${LOPTS} -s EXPORTED_FUNCTIONS=\"['_malloc', '_free']\"")
 
 foreach (JS_FILENAME ${EXTERN_POSTJS_SRC})
   set(LOPTS "${LOPTS} --extern-post-js ${JS_FILENAME}")
